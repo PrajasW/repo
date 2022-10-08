@@ -1,0 +1,38 @@
+#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+	clrscr();
+	int a[5],temp,i,j;
+	cout<<"Enter 5 Numbers: \n";
+	for(i=0;i<5;i++)
+	{
+		cin>>a[i];
+	}
+	cout<<"\n Orignal \n";
+	for(i=0;i<5;i++)
+	{
+		cout<<a[i]<<" ";
+	}
+	for(i=0;i<5;i++)
+	{
+		for(j=0;j<5-i-1;j++)
+		{
+			if(a[j]>a[j+1])
+			{
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+
+			}
+		}
+	}
+	cout<<"\n Sorted \n";
+	
+	for(i=0;i<5;i++)
+	{
+		cout<<a[i]<<" ";
+	}
+	getch();
+}

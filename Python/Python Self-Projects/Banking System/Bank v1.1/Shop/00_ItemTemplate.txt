@@ -1,0 +1,4 @@
+u/t [unit or time]
+d/s [deposit or spend]
+Anime ..> will also determine the basic name of the thing
+Watch Anime ..>this will be usefull when asking for how long/many we did

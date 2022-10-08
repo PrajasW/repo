@@ -1,0 +1,31 @@
+#include <conio.h>
+#include <iostream.h>
+
+const int pi=3.14;
+class A
+{
+	public:
+	Area(float a)
+	{
+		cout<<"area: "<<(pi*a*a)<<"\n" ;
+		getch();
+		return 0;
+	}
+	Circum(float a)
+	{
+		cout<<"circumference: "<<(2*pi*a)<<"\n";
+		getch();
+		return 0;
+	}
+};
+void main()
+{
+	A a;
+	cout<<"Enter the radius of Circle";
+	int x;
+	cin>>x;
+	a.Area(x);
+	a.Circum(x);
+	getch();
+	clrscr();
+}

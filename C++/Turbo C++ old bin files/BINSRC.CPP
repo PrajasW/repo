@@ -1,0 +1,58 @@
+#include <iostream.h>
+#include <conio.h>
+
+int bsearch(int x[5] ,int c)
+{
+	int down,up,mid;
+	down=0;
+	up=9;
+	while( down <= up )
+	{
+		mid=(up+down)/2;
+		if(x[mid]==c)
+		{
+			return mid+1;
+		}
+		if(x[mid]>c)
+		{
+			up=mid;
+		}
+		if(x[mid]<c)
+		{
+			down=mid;
+		}
+	}
+	return 0;
+}
+
+void main()
+{
+	int a[5];
+	cout<<"Enter 5 Numbers: \n";
+	for( int i=0 ; i<5 ; i++ )
+	{
+		cin>>a[i];
+	}
+	cout<<"Orignal List : \n ";
+	for( i=0 ; i<5 ; i++ )
+	{
+		cout<<"\t"<<a[i];
+	}
+	cout<<"Number to find:";
+	int loc,find;
+	cin>>find;
+	loc=bsearch( a , find);
+	if (loc==0)
+	{
+		cout<<"\n Number Not Found";
+
+	}
+	else
+	{
+		cout<<"\n Number Found At Location: "<<loc;
+	}
+	getch();
+	clrscr();
+}
+
+
