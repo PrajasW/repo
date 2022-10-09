@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE> <font type="comic sans ms"> Exam </font> </TITLE>
+</HEAD>
+<BODY bgcolor="pink" color=green>
+<font type="google sans">
+
+<a href="Result1.html" >
+<h1> click here </h>
+</a>
+</font>
+</BODY>
+</HTML>

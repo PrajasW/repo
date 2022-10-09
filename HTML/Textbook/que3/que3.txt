@@ -1,0 +1,32 @@
+<HTML>
+<HEAD> 
+</HEAD>
+<BODY>
+<h1>
+<TABLE width="250" cellspace="0">
+<TR>
+<td rowspan="2"> <i><b><font color=red> College Name:S.P.College. </font></i></b>
+</TR>
+<tr>
+<td rowspan="2"><marquee> Admission data </marquee>
+</tr>
+<tr>
+<td> <u><i>Streams</u></i>
+<td> <u><i>Capacity</u></i>
+</tr>
+<tr>
+<td>Commerce 
+<td>150
+</tr>
+<tr>
+<td>Scienece
+<td>100
+</tr>
+<tr>
+<td>Arts
+<td>100
+</tr>
+</h1>
+</TABLE>
+</BODY>
+</html>

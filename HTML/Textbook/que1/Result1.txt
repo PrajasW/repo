@@ -1,0 +1,8 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY bgcolor=light blue>
+
+<MARQUEE> <H1><B><I> BEST OF LUCK </B></I></H1> </MARQUEE>
+</BODY>
+</HTML>
