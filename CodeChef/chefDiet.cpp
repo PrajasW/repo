@@ -4,37 +4,35 @@ using namespace std;
 class Diet
 {
 private:
-    int duration; //in days (N)    
-    int minProtienIntakePerDay; //(K)
-    int protienBoughtOnDay[101]; // (A)
-    int protienInShelf=0;
+    int duration;
+    int minIntakePerDay;
+    int shoppingOnDay[101];
+    int protienAtHome=0;
 public:
-    void setDiet();
-    void checkEnoughProtien();
+    void planDiet();
+    void verifyDiet();
 };
 
-void Diet::setDiet() //[working properly]
+void Diet::planDiet()
 {
-    cin>>duration>>minProtienIntakePerDay;
+    cin>>duration>>minIntakePerDay;
     for (int i = 0; i < duration; i++)
     {
-        cin>>protienBoughtOnDay[i];
+        shoppingOnDay[i];
     }
+        
 }
-void Diet::checkEnoughProtien()
+void Diet::verifyDiet()
 {
-    int day = -1;
+    int day=-1;
     for (int i = 0; i < duration; i++)
     {
-        protienInShelf = protienInShelf + protienBoughtOnDay[i];
-        if (protienBoughtOnDay[i] < protienInShelf)
+        protienAtHome += shoppingOnDay[i];
+        if (protienAtHome < minIntakePerDay)
         {
             day = i+1;
         }
-        else
-        {
-            protienInShelf = protienInShelf - minProtienIntakePerDay;
-        }
+        protienAtHome -= minIntakePerDay;
     }
     if (day == -1)
     {
@@ -42,24 +40,23 @@ void Diet::checkEnoughProtien()
     }
     else
     {
-        cout<<"NO "<<day;
+        cout<<"NO "<<day<<endl;
     }
-    
-    
+       
 }
-
 int main()
 {
-    int totalTest;
-    cin>>totalTest;
-    Diet testCase[totalTest];
-    for (int i = 0; i < totalTest; i++)
+    int totalTests;
+    cin>>totalTests;
+
+    Diet testRun[totalTests];
+    for (int i = 0; i < totalTests; i++)
     {
-        testCase[i].setDiet();
+        testRun[i].planDiet();
     }
-    for (int i = 0; i < totalTest; i++)
+    for (int i = 0; i < totalTests; i++)
     {
-        testCase[i].checkEnoughProtien();
+        testRun[i].verifyDiet();
     }
     return 0;
 }
