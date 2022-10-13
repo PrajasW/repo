@@ -19,11 +19,26 @@ public:
     void copyMatrix(Matrix);
     Matrix divideByScalar(int Scalar);
 
+    void adjustZero();
     Matrix cofactor();
     Matrix adjoint();
     Matrix inverse();
     void setDet();
 };
+
+void Matrix::adjustZero()
+{
+    for (int row = 0; row < 3; row++)
+    {
+        for (int col = 0; col < 3; col++)
+        {
+            if (elementAt[row][col] == -0)
+            {
+                elementAt[row][col] = 0;
+            }
+        }
+    }
+}
 
 void Matrix::init()
 {
@@ -39,10 +54,12 @@ void Matrix::init()
 
 void Matrix::display(bool precision=false)
 {
+    adjustZero();
     for (int row = 0; row < 3; row++)
     {
         for (int col = 0; col < 3; col++)
         {
+               
             if(precision)
                 printf("%.2f ",elementAt[row][col]);
             else
@@ -119,6 +136,7 @@ Matrix Matrix::cofactor()
             cofactor.elementAt[row][col]= (float) power(-1,row+col+1)*minor;
         }
     }
+    // cofactor.adjustZero(); --> ###Uncomment for using cofactor() indivisually### commenting for faster code run 
     return cofactor;
 }
 
@@ -138,8 +156,10 @@ Matrix Matrix::adjoint()
 
 Matrix Matrix::inverse()
 {
+    setDet();
     Matrix copy;
     copy = adjoint();
+    copy.adjustZero();
     return copy.divideByScalar(det);
 }
 
@@ -180,29 +200,77 @@ bool checkNumber(float num,int min,int max)
 
 bool checkMatrix(Matrix matrix,int min,int max)
 {
+    bool status = true;
     for (int row = 0; row < 3; row++)
     {
         for (int col = 0; col < 3; col++)
         {
             if (checkNumber(matrix.elementAt[row][col],min,max) == false)
             {
-                return false;
+                status = false;
+                break;
             }
         }
+        if (status == false)
+        {
+            break;
+        }
     }
-    return true;
+    return status;
 }
 
 
 int main()
 {
     Matrix testMatrix;
-    int counter=0;
+    // manual testing :: statisfying case
+    // testMatrix.elementAt[0][0] = 1;
+    // testMatrix.elementAt[0][1] = 0;
+    // testMatrix.elementAt[0][2] = 0;
+    // testMatrix.elementAt[1][0] = 0;
+    // testMatrix.elementAt[1][1] = 1;
+    // testMatrix.elementAt[1][2] = 0;
+    // testMatrix.elementAt[2][0] = 0;
+    // testMatrix.elementAt[2][1] = 0;
+    // testMatrix.elementAt[2][2] = 1;
+
+    // manual testing :: non-statisfying case
+    // testMatrix.elementAt[0][0] = 4;
+    // testMatrix.elementAt[0][1] = 2;
+    // testMatrix.elementAt[0][2] = 6;
+    // testMatrix.elementAt[1][0] = 2;
+    // testMatrix.elementAt[1][1] = 1;
+    // testMatrix.elementAt[1][2] = 7;
+    // testMatrix.elementAt[2][0] = 3;
+    // testMatrix.elementAt[2][1] = 2;
+    // testMatrix.elementAt[2][2] = 8;
+
+    // cout<<endl<<"--Matrix--"<<endl;
+    // testMatrix.display();
+    // // testMatrix.setDet(); --> now made inside inverse so no need to declare
+    // cout<<endl<<"--Inverse Matrix--"<<endl;
+    // testMatrix.inverse().display();
+
+    // // testing the if-sequence inside loop
+    // if (checkMatrix(testMatrix.inverse(),-1,1))
+    //     {
+    //         testMatrix.setDet();
+    //         cout<<checkMatrix(testMatrix.inverse(),-1,1);
+    //         cout<<endl<<"--Matrix"<<"--"<<endl;
+    //         testMatrix.display();
+    //         cout<<endl<<"--Matrix"<<" Inverse--"<<endl;
+    //         testMatrix.inverse().display();
+    //     }
+
+    // general programs
+    int successCounter=0;
+    long testConunter=0;
     int lowerLimit = 0;
     int higherLimit = 9;
+    
     for (testMatrix.elementAt[0][0] = lowerLimit; testMatrix.elementAt[0][0] <= higherLimit; testMatrix.elementAt[0][0]++)
     {
-        cout<<endl<<"Running Test "<<testMatrix.elementAt[0][0]<<"/"<<higherLimit<<endl;
+        cout<<endl<<"Running Test "<<(testMatrix.elementAt[0][0]-lowerLimit+1)<<"/"<<(higherLimit-lowerLimit+1)<<endl;
         for (testMatrix.elementAt[0][1] = lowerLimit; testMatrix.elementAt[0][1] <= higherLimit; testMatrix.elementAt[0][1]++)
         {
             for (testMatrix.elementAt[0][2] = lowerLimit; testMatrix.elementAt[0][2] <= higherLimit; testMatrix.elementAt[0][2]++)
@@ -219,14 +287,23 @@ int main()
                                 {
                                     for (testMatrix.elementAt[2][2] = lowerLimit; testMatrix.elementAt[2][2] <= higherLimit; testMatrix.elementAt[2][2]++)
                                     {
+                                        // successCounter++;
+                                        // cout<<endl<<"--Matrix "<<successCounter<<"--"<<endl;
+                                        // testMatrix.display();
+                                        testMatrix.setDet();
                                         if (checkMatrix(testMatrix.inverse(),lowerLimit,higherLimit))
                                         {
-                                            counter++;
-                                            cout<<endl<<"--Matrix "<<counter<<"--"<<endl;
+                                            if (testMatrix.det == 0)
+                                            {
+                                                continue;
+                                            }
+                                            successCounter++;
+                                            cout<<endl<<"--Matrix "<<successCounter<<"--"<<endl;
                                             testMatrix.display();
-                                            cout<<endl<<"--Matrix "<<counter<<" Inverse--"<<endl;
+                                            cout<<endl<<"--Matrix "<<successCounter<<" Inverse--"<<endl;
                                             testMatrix.inverse().display();
                                         }
+                                        testConunter++;
                                     }
                                 }
                             }
@@ -237,18 +314,18 @@ int main()
         }   
     }
     
-    if (counter == 0)
+    if (successCounter == 0)
     {
-        cout<<"No such Matrix";
+        cout<<endl<<"No such Matrix"<<endl;
     }
     else
     {
-        cout<<endl<<"total such matrix = "<<counter<<endl;
+        cout<<endl<<"Total "<<successCounter<<" such Matrix out of "<<testConunter<<endl;
     }
 
 
-    cout<<endl<<endl<<endl<<endl<<"Press Any Key To Exit"<<endl;
-    getchar();
+    // cout<<endl<<endl<<endl<<endl<<"Press Any Key To Exit"<<endl;
+    // getchar();
     
 
     return 0;
