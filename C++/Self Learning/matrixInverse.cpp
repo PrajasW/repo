@@ -10,9 +10,9 @@ public:
     void display();
     void copyMatrix(Matrix);
     Matrix divideByScalar(int Scalar);
-    void initDet();
+    void setDet();
 };
-void Matrix::initDet()
+void Matrix::setDet()
 {
     det = (elementAt[0][0]*(elementAt[1][1]*elementAt[2][2]-elementAt[2][1]*elementAt[1][2]))
     -(elementAt[0][1]*(elementAt[0][1]*elementAt[2][2] - elementAt[0][2]*elementAt[2][1]))
@@ -86,7 +86,7 @@ int main()
     
     cout<<endl<<"--Matrix Inputed--"<<endl;
     orignalMatrix.display();
-    orignalMatrix.initDet();
+    orignalMatrix.setDet();
 
     if (orignalMatrix.det == 0)
     {
