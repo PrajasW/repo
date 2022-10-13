@@ -4,9 +4,34 @@ using namespace std;
 class Matrix
 {
 public:
-    int elementAt[3][3];
+    float elementAt[3][3];
+    bool precision = false;
+    int det;
     void display();
+    void copyMatrix(Matrix);
+    Matrix divideByScalar(int Scalar);
+    void initDet();
 };
+void Matrix::initDet()
+{
+    det = (elementAt[0][0]*(elementAt[1][1]*elementAt[2][2]-elementAt[2][1]*elementAt[1][2]))
+    -(elementAt[0][1]*(elementAt[0][1]*elementAt[2][2] - elementAt[0][2]*elementAt[2][1]))
+    +(elementAt[0][2]*(elementAt[0][1]*elementAt[1][2]-elementAt[0][2]*elementAt[1][1]));
+}
+
+Matrix Matrix::divideByScalar(int Scalar)
+{
+    Matrix M;
+    for (int row = 0; row < 3; row++)
+    {
+        for (int col = 0; col < 3; col++)
+        {
+            M.elementAt[row][col] = elementAt[row][col]/Scalar;
+        }
+        
+    }
+    return M;
+}
 
 void Matrix::display()
 {
@@ -14,10 +39,26 @@ void Matrix::display()
     {
         for (int col = 0; col < 3; col++)
         {
-            cout<<elementAt[row][col]<<" ";
+            if(precision)
+                printf("%.2f ",elementAt[row][col]);
+            else
+                cout<<elementAt[row][col]<<" ";
         }
         cout<<endl;
     }
+}
+
+void Matrix::copyMatrix(Matrix matrixToCopy)
+{
+    for (int row = 0; row < 3; row++)
+    {
+        for (int col = 0; col < 3; col++)
+        {
+            elementAt[row][col] = matrixToCopy.elementAt[row][col];
+        }
+        
+    }
+    
 }
 
 int power(int base,int index)
@@ -42,22 +83,35 @@ int main()
             cin>>orignalMatrix.elementAt[row][col];
         }
     }
-    system("cls");
+    
     cout<<endl<<"--Matrix Inputed--"<<endl;
     orignalMatrix.display();
+    orignalMatrix.initDet();
 
+    if (orignalMatrix.det == 0)
+    {
+        cout<<endl<<"The Determinent of The Matrix is Zero\nInverse of this Matrix is INVALID"<<endl;
+        return 0;
+    }
+
+    cout<<"minor at position"<<endl;
+    
+    // logic to find conjugate matrix
     for (int row = 0; row < 3; row++)
     {
         for (int col = 0; col < 3; col++)
         {
             int minorMatrix[2][2];
             int x=0,y=0;
-            int counter=1;
             for (int i = 0; i < 3; i++)
             {
+                if (i == row)
+                {
+                    continue;
+                }
                 for (int j = 0; j < 3; j++)
                 {
-                    if (row == i || col == j)
+                    if (j == col)
                     {
                         continue;
                     }
@@ -82,12 +136,41 @@ int main()
                 }
                 
             }
-            int minor = minorMatrix[0][0]*minorMatrix[1][1]+minorMatrix[0][1]*minorMatrix[0][1];
-            cofactorMatrix.elementAt[row][col]= power(-1,row+col+1)*minor;
+            // for (int i = 0; i < 2; i++)
+            // {
+            //     for (int j = 0; j < 2; j++)
+            //     {
+            //         cout<<minorMatrix[i][j]<<" ";
+            //     }
+            //     cout<<endl;
+            // }
+            
+            int minor = minorMatrix[0][0]*minorMatrix[1][1] - minorMatrix[0][1]*minorMatrix[1][0];
+            // cout<<minor<<endl;
+            cofactorMatrix.elementAt[row][col]= (float) power(-1,row+col+1)*minor;
         }
     }
     cout<<endl<<"--Cofactor Matrix--"<<endl;
     cofactorMatrix.display();
     
+    Matrix adjointMatrix;
+    adjointMatrix.copyMatrix(cofactorMatrix);
+    adjointMatrix.elementAt[1][0] = cofactorMatrix.elementAt[0][1];
+    adjointMatrix.elementAt[2][0] = cofactorMatrix.elementAt[0][2];
+    adjointMatrix.elementAt[0][1] = cofactorMatrix.elementAt[1][0];
+    adjointMatrix.elementAt[0][2] = cofactorMatrix.elementAt[2][0];
+    adjointMatrix.elementAt[2][1] = cofactorMatrix.elementAt[1][2];
+    adjointMatrix.elementAt[1][2] = cofactorMatrix.elementAt[2][1];
+    
+    cout<<endl<<"--Adjoint Matrix--"<<endl;
+    adjointMatrix.display();
+
+    Matrix inverseMatrix;
+    inverseMatrix.precision = true;
+    inverseMatrix.copyMatrix(adjointMatrix.divideByScalar(orignalMatrix.det));
+
+    cout<<endl<<"--Inverse Matrix--"<<endl;
+    inverseMatrix.display();
+
     return 0;
 }
