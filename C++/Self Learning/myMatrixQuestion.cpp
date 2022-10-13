@@ -1,4 +1,10 @@
-// to find inverse of a matrix using oop
+/*
+Q] list=[0,1,2,3,4,5,6,7,8,9]
+A matrix is made such that it's elements are from the list.
+find and print all such matrices who's inverse can be written by only using the
+numbers in list.
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -194,10 +200,9 @@ int main()
     int counter=0;
     int lowerLimit = 0;
     int higherLimit = 9;
-    // cout<<checkMatrix(testMatrix.inverse(),lowerLimit,higherLimit);
-
     for (testMatrix.elementAt[0][0] = lowerLimit; testMatrix.elementAt[0][0] <= higherLimit; testMatrix.elementAt[0][0]++)
     {
+        cout<<endl<<"Running Test "<<testMatrix.elementAt[0][0]<<"/"<<higherLimit<<endl;
         for (testMatrix.elementAt[0][1] = lowerLimit; testMatrix.elementAt[0][1] <= higherLimit; testMatrix.elementAt[0][1]++)
         {
             for (testMatrix.elementAt[0][2] = lowerLimit; testMatrix.elementAt[0][2] <= higherLimit; testMatrix.elementAt[0][2]++)
