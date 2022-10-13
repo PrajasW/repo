@@ -94,7 +94,7 @@ int main()
         return 0;
     }
 
-    cout<<"minor at position"<<endl;
+    // cout<<"minor at position"<<endl;
     
     // logic to find conjugate matrix
     for (int row = 0; row < 3; row++)
