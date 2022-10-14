@@ -136,7 +136,7 @@ Matrix Matrix::cofactor()
             cofactor.elementAt[row][col]= (float) power(-1,row+col+1)*minor;
         }
     }
-    // cofactor.adjustZero(); --> ###Uncomment for using cofactor() indivisually### commenting for faster code run 
+    // cofactor.adjustZero();
     return cofactor;
 }
 
@@ -223,48 +223,9 @@ bool checkMatrix(Matrix matrix,int min,int max)
 int main()
 {
     Matrix testMatrix;
-    // manual testing :: statisfying case
-    // testMatrix.elementAt[0][0] = 1;
-    // testMatrix.elementAt[0][1] = 0;
-    // testMatrix.elementAt[0][2] = 0;
-    // testMatrix.elementAt[1][0] = 0;
-    // testMatrix.elementAt[1][1] = 1;
-    // testMatrix.elementAt[1][2] = 0;
-    // testMatrix.elementAt[2][0] = 0;
-    // testMatrix.elementAt[2][1] = 0;
-    // testMatrix.elementAt[2][2] = 1;
-
-    // manual testing :: non-statisfying case
-    // testMatrix.elementAt[0][0] = 4;
-    // testMatrix.elementAt[0][1] = 2;
-    // testMatrix.elementAt[0][2] = 6;
-    // testMatrix.elementAt[1][0] = 2;
-    // testMatrix.elementAt[1][1] = 1;
-    // testMatrix.elementAt[1][2] = 7;
-    // testMatrix.elementAt[2][0] = 3;
-    // testMatrix.elementAt[2][1] = 2;
-    // testMatrix.elementAt[2][2] = 8;
-
-    // cout<<endl<<"--Matrix--"<<endl;
-    // testMatrix.display();
-    // // testMatrix.setDet(); --> now made inside inverse so no need to declare
-    // cout<<endl<<"--Inverse Matrix--"<<endl;
-    // testMatrix.inverse().display();
-
-    // // testing the if-sequence inside loop
-    // if (checkMatrix(testMatrix.inverse(),-1,1))
-    //     {
-    //         testMatrix.setDet();
-    //         cout<<checkMatrix(testMatrix.inverse(),-1,1);
-    //         cout<<endl<<"--Matrix"<<"--"<<endl;
-    //         testMatrix.display();
-    //         cout<<endl<<"--Matrix"<<" Inverse--"<<endl;
-    //         testMatrix.inverse().display();
-    //     }
-
-    // general programs
     int successCounter=0;
     long testConunter=0;
+    long totalMatrices=0;
     int lowerLimit = 0;
     int higherLimit = 9;
     
@@ -287,21 +248,19 @@ int main()
                                 {
                                     for (testMatrix.elementAt[2][2] = lowerLimit; testMatrix.elementAt[2][2] <= higherLimit; testMatrix.elementAt[2][2]++)
                                     {
-                                        // successCounter++;
-                                        // cout<<endl<<"--Matrix "<<successCounter<<"--"<<endl;
-                                        // testMatrix.display();
                                         testMatrix.setDet();
+                                        totalMatrices++;
+                                        if (testMatrix.det == 0)
+                                        {
+                                            continue;
+                                        }
                                         if (checkMatrix(testMatrix.inverse(),lowerLimit,higherLimit))
                                         {
-                                            if (testMatrix.det == 0)
-                                            {
-                                                continue;
-                                            }
                                             successCounter++;
                                             cout<<endl<<"--Matrix "<<successCounter<<"--"<<endl;
                                             testMatrix.display();
                                             cout<<endl<<"--Matrix "<<successCounter<<" Inverse--"<<endl;
-                                            testMatrix.inverse().display();
+                                              testMatrix.inverse().display();
                                         }
                                         testConunter++;
                                     }
@@ -316,17 +275,16 @@ int main()
     
     if (successCounter == 0)
     {
-        cout<<endl<<"No such Matrix"<<endl;
+        cout<<endl<<"--Total "<<totalMatrices<<" Matrices Possible--"<<endl;
+        cout<<"--"<<testConunter<<" Matrices Checked--"<<endl;
+        cout<<endl<<"--No Matrix Satisfies--"<<endl<<endl;
     }
     else
     {
-        cout<<endl<<"Total "<<successCounter<<" such Matrix out of "<<testConunter<<endl;
+        cout<<endl<<"--Total "<<totalMatrices<<" Matrices Possible--"<<endl;
+        cout<<"--"<<testConunter<<" Matrices Checked--"<<endl;
+        cout<<"--"<<successCounter<<" Matrices Satisfy--"<<endl<<endl;
     }
-
-
-    // cout<<endl<<endl<<endl<<endl<<"Press Any Key To Exit"<<endl;
-    // getchar();
-    
 
     return 0;
 }
