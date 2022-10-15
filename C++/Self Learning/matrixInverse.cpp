@@ -96,7 +96,7 @@ int main()
 
     // cout<<"minor at position"<<endl;
     
-    // logic to find conjugate matrix
+    // logic to find cofactor matrix
     for (int row = 0; row < 3; row++)
     {
         for (int col = 0; col < 3; col++)
