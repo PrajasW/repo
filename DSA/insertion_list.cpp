@@ -13,7 +13,7 @@ Node* insertAtFirst(Node *head,int data)
     Node* ptr = new Node;
     ptr->data = data;
     ptr->next = head;
-    return ptr;
+    return head;
 }
 Node* insertAtEnd(Node *head,int data)
 {
@@ -26,7 +26,7 @@ Node* insertAtEnd(Node *head,int data)
     }
     itrr->next = ptr;
     ptr->next = NULL;
-    return ptr;
+    return head;
 }
 Node* insertAtIndex(Node *head,int data,int index)
 {
@@ -39,7 +39,7 @@ Node* insertAtIndex(Node *head,int data,int index)
     }
     ptr->next = itrr->next;
     itrr->next = ptr;
-    return ptr;
+    return head;
 }
 void display(Node* head)
 {
@@ -64,15 +64,13 @@ int main()
     second->data = 30;
     second->next = NULL;
 
-    Node *superhead = new Node;
     display(head);
-    superhead = insertAtFirst(head,5);
-    display(superhead);
-    insertAtEnd(superhead,1);
-    display(superhead);
-    Node *insElem = new Node;
-    insElem = insertAtIndex(superhead,19,2);
-    display(superhead);
+    head = insertAtFirst(head,5);
+    display(head);
+    insertAtEnd(head,1);
+    display(head);
+    head= insertAtIndex(head,19,2);
+    display(head);
     
 
     return 0;
