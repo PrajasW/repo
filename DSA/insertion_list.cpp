@@ -13,7 +13,7 @@ Node* insertAtFirst(Node *head,int data)
     Node* ptr = new Node;
     ptr->data = data;
     ptr->next = head;
-    return head;
+    return ptr;
 }
 Node* insertAtEnd(Node *head,int data)
 {
