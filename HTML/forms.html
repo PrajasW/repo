@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <div>
+        <h1><ins>HTML FORMS</ins></h1>
+    </div>
+
+    <form action="backend.js">
+        <div>
+        <label for="name">Name:</label>
+        <br>
+        <input type="text" name="inputName" id="name">
+        </div>
+        <br>
+        <div>
+        <label for="id">Id:</label>
+        <br>
+        <input type="text" name="inputId" id="id">
+        </div>
+        <br>
+        <div>
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" name="inputEmail" id="email">
+        </div>
+        <br>
+        <div>
+        <label for="dob">Date Of Birth:</label>
+        <br>
+        <input type="date" name="inputDob" id="dob">
+        </div>
+        <br>
+        <div>
+        <label for="age">Age:</label>
+        <br>
+        <input type="number" name="inputAge" id="age">
+        </div>
+        <br>
+        <div>
+            <ins>Gender:</ins>
+            <br>
+            <label for="male">Male:</label>
+            <input type="radio" name="inputGender" id="male">
+            <label for="female">Female:</label>
+            <input type="radio" name="inputGender" id="female">
+        </div>
+        <br>
+        <div>
+            <label for="myself">Write About Yourself:</label> <br>
+            <textarea name="inputMyself" id="myself" cols="40" rows="10"></textarea>
+        </div>
+        <br>
+        <div>
+            <select name="inputJob" id="job">
+                <option value="neet">NEET</option>
+                <option value="student" selected>Student</option>
+                <option value="office-man">Office-man</option>
+                <option value="business-man">Business-man</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="tnc">I have read and agree to the <a href="tnc.html" target="_blank">terms and conditions</a></label>
+            <input type="checkbox" name="inputTnc" id="tnc">
+        </div>
+        <br>
+        <br>
+        <div>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</body>
+</html>
