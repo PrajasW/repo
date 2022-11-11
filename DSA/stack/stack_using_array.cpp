@@ -77,6 +77,11 @@ void Stack::push(int data)
 int Stack::pop()
 {
     // head always points onestep ahead of last value
+    if (isEmpty() == 1)
+    {
+        cout<<"stack is empty"<<endl;
+        delete this;
+    }
     head--;
     int data = *head;
     used--;
@@ -95,16 +100,12 @@ int main()
 {
     Stack st(3);
     st.push(3);
-    st.memoryStat();
     st.push(2);
-    st.memoryStat();
+    cout<<st.pop()<<endl;
     st.push(1);
-    st.memoryStat();
+    st.push(3);
     cout<<st.pop()<<endl;
-    st.memoryStat();
     cout<<st.pop()<<endl;
-    st.memoryStat();
     cout<<st.pop()<<endl;
-    st.memoryStat();
     return 0;
 }
