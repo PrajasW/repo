@@ -1,0 +1,46 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Basic Syntax": {
+		"prefix": "basic",
+		"body": [
+			"#include <iostream>",
+			"using namespace std;",
+			"",
+			"int main(${1:int argc, char const *argv[]})",
+			"{",
+			"\t$0",
+			"\treturn 0;",
+			"}",
+		],
+		"description": "Prints Basic Syntax of C++ Program"
+	},
+	
+	"File I/O": {
+		"prefix": "iotxt",
+		"body": [
+			"#ifndef ONLINE_JUDGE",
+			"freopen(\"input.txt\", \"r\", stdin);",
+			"freopen(\"output.txt\", \"w\", stdout);",
+			"#endif",
+			"$0",
+		],
+		"description": "io link"
+	},
+	"CodeChef": {
+		"prefix": "chef",
+		"body": [
+			"int t;",
+			"cin>>t;",
+			"while(t--)",
+			"{",
+			"\t$0",
+			"}",
+
+		],
+		"description": "chef textcase"
+	},
+}
