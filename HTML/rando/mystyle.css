@@ -1,0 +1,18 @@
+body{
+    background-image: url(./bg.png);
+    background-size: 100%;
+    background-repeat:no-repeat;
+}
+#div0001{
+    color: pink;
+}
+.blue{
+    border: 4px;
+    border-style: double;
+    color: blueviolet;
+    border-color: chartreuse;
+}
+.margin{
+    margin: 40px 15px 40px 15px;
+    
+}   

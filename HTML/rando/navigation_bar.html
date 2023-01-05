@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Bar</title>
+    <style>
+        body{
+            background-image: url("./KillLaKill-xfdz8i.jpg");
+            background-repeat: no-repeat;
+        }
+        .navbar{
+            background-color: rgb(21, 21, 21);
+            border-style: none;
+            border-radius: 15px;
+        }
+        .navbar li{
+            float:left;
+            list-style: none;
+            padding: 10px;
+            margin: 5px;
+        }
+        .navbar ul{
+            overflow: auto;
+        }
+        .navbar a{
+            text-decoration: none;
+            color: orange;
+            font-size: 18px;
+        }
+        .navbar a:hover{
+            color: rgb(164, 107, 0);
+        }
+        .navbar ul .search{
+            float:right;
+            padding: 2px 20px;
+            margin: 14px;
+            border-style: none;
+            border-radius: 10px;
+        }
+        .navbar ul #logo{
+            float: left;
+            height: 25px;   
+            width: auto;
+        }
+    </style>    
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><img id="logo" src="https://i.seadn.io/gae/Bb1LirSLuImz350HEF-4dEf6w1XJnTnv_FGtqZE4pAWmxXYMlvgLfU3cmwOSDsMelDOOOGC9EF54QZgqmWdCCIYS1ypx3oNkf0ChSw?auto=format&w=1920" ></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Premium</a></li>
+            <div class="search">
+                <input type="text" placeholder="Find Your Poison">
+            </div>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.fcontainer{
+    display: flex;
+    border: 3px solid black;
+    flex-wrap: wrap;
+}   
+.fitem{
+    color: aqua;
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+}
+.fitem:hover{
+    background-color: rgb(99, 99, 244);
+}
+#item1{
+    order: 3;
+}
+#item2{
+    order: 2;
+}
+#item3{
+    order: 1;
+}
+#item4{ 
+    order: 3;
+}
